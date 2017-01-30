@@ -11,8 +11,7 @@ def add_phonenumbers(url_array)
     url = url_array.shift
     #add new url to seen urls set
     seen_urls.add(url)
-
-    response = RestClient.get(url)
+    response = RestClient.get(url){|response, request, result| response }
     next unless response.body
 
     #Add new links to que
@@ -25,6 +24,7 @@ def add_phonenumbers(url_array)
 
     match_data.to_a.each do |number|
       puts number
+      puts url
     end
   end
 end
