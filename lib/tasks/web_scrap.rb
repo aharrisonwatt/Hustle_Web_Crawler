@@ -23,8 +23,10 @@ def add_phonenumbers(url_array)
     match_data = phone_reg.match(response.body)
 
     match_data.to_a.each do |number|
-      puts number
-      puts url
+      Phonenumber.create({
+        url: url,
+        number: number
+      })
     end
   end
 end
